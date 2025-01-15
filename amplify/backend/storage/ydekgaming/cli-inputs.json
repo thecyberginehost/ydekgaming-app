@@ -1,0 +1,14 @@
+{
+  "resourceName": "ydekgaming",
+  "policyUUID": "7ae8480e",
+  "bucketName": "ydekgaming352c868360344382b6e7f2a79361ddb7",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

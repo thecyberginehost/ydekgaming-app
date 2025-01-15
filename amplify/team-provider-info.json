@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ydekgaming-dev-c912c-authRole",
+      "UnauthRoleArn": "arn:aws:iam::526023820218:role/amplify-ydekgaming-dev-c912c-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::526023820218:role/amplify-ydekgaming-dev-c912c-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-ydekgaming-dev-c912c-deployment",
+      "UnauthRoleName": "amplify-ydekgaming-dev-c912c-unauthRole",
+      "StackName": "amplify-ydekgaming-dev-c912c",
+      "StackId": "arn:aws:cloudformation:us-east-1:526023820218:stack/amplify-ydekgaming-dev-c912c/0b0d0e10-d364-11ef-ba25-0affc03cfa25",
+      "AmplifyAppId": "d2e7u2a11nf813"
+    },
+    "categories": {
+      "auth": {
+        "ydekgamingf3c25e18": {}
+      },
+      "storage": {
+        "ydekgaming": {}
+      }
+    }
+  }
+}

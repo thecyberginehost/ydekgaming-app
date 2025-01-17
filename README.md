@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# YDEK Gaming Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to **YDEK Gaming**, a social networking platform designed specifically for gamers. Our mission is to connect players, guilds, and teams while fostering a thriving gaming community with features like real-time timelines, private messaging, guild boards, and more.
 
-## Available Scripts
+## Features
+### Current Features
+- **User Authentication**
+  - Sign up, login, and secure profile management via AWS Cognito.
+- **User Profiles**
+  - Upload and update profile pictures.
+  - Add and edit an "About Me" section.
+- **Subscriptions**
+  - Tiered subscription plans for enhanced features.
+- **Tournaments**
+  - Explore upcoming tournaments tailored to various games.
+- **Guild Board**
+  - Discover guilds, teams, and clans and join them through application posts.
+- **Under Construction Banner**
+  - Clearly communicate the app’s development status to users.
 
-In the project directory, you can run:
+### Upcoming Features
+- **Friends List**
+  - Add, accept, and manage friends.
+- **Private Messaging**
+  - Real-time chat with friends.
+- **User Timelines**
+  - Live updates of posts from friends and guilds.
+- **Real-Time Guild Board**
+  - Guilds can create real-time application posts filtered by game.
 
-### `npm start`
+## Tech Stack
+- **Frontend**: React.js with Tailwind CSS for styling.
+- **Backend**: AWS Amplify for hosting, AWS AppSync for GraphQL APIs, and DynamoDB for data storage.
+- **Authentication**: AWS Cognito.
+- **File Storage**: AWS S3 for profile pictures and post uploads.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
+### Prerequisites
+Ensure you have the following installed on your local machine:
+- **Node.js** (v16+ recommended)
+- **npm** (or **yarn**)
+- **Git**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/thebyerginehost/ydekgaming-app.git

@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import UnderConstructionBanner from "../components/UnderConstructionBanner";
 
 function Login() {
-  const [identifier, setIdentifier] = useState(""); 
+  const [username, setUsername] = useState(""); 
   const [password, setPassword] = useState("");
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      // Cognito will accept either username or email as identifier
-      await Auth.signIn(identifier, password);
+      // Authenticate user using username and password
+      await Auth.signIn(username, password);
       window.location.href = "/dashboard";
     } catch (error) {
       alert("Error signing in: " + error.message);
@@ -21,54 +21,59 @@ function Login() {
 
   return (
     <>
-      {/* Banner at the very top, outside the flex container */}
+      {/* Banner at the top */}
       <UnderConstructionBanner />
       
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#0f172a] text-white p-6">
         <form
           onSubmit={handleSignIn}
-          className="bg-white p-6 rounded shadow-md w-full max-w-md"
+          className="bg-[#1e293b] p-8 rounded-lg shadow-lg w-full max-w-md"
         >
-          <h2 className="text-2xl font-bold mb-4">Login</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center text-[#00f7ff]">
+            Welcome Back
+          </h2>
 
-          <label htmlFor="identifier" className="block text-gray-700 mb-1">
-            Username or Email:
+          <label htmlFor="username" className="block mb-2 text-gray-300">
+            Username:
           </label>
           <input
-            id="identifier"
+            id="username"
             type="text"
-            className="w-full p-2 border rounded mb-4"
-            value={identifier}
-            onChange={(e) => setIdentifier(e.target.value)}
-            placeholder="Enter your username or email"
+            className="w-full p-3 rounded-lg bg-[#0f172a] text-gray-300 border border-[#00f7ff] focus:outline-none focus:ring-2 focus:ring-[#00f7ff] mb-4"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your username"
             required
           />
 
-          <label htmlFor="password" className="block text-gray-700 mb-1">
+          <label htmlFor="password" className="block mb-2 text-gray-300">
             Password:
           </label>
           <input
             id="password"
             type="password"
-            className="w-full p-2 border rounded mb-6"
+            className="w-full p-3 rounded-lg bg-[#0f172a] text-gray-300 border border-[#00f7ff] focus:outline-none focus:ring-2 focus:ring-[#00f7ff] mb-6"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Your password"
+            placeholder="Enter your password"
             required
           />
 
           <button
             type="submit"
-            className="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-500"
+            className="w-full py-3 rounded-lg text-lg font-semibold text-black bg-[#00f7ff] hover:bg-[#00c2d1] transition"
           >
             Sign In
           </button>
 
-          <p className="text-center mt-4 text-sm">
+          <p className="text-center mt-4 text-gray-400">
             Forgot your password?{" "}
-            <a href="/password-reset" className="text-blue-600 underline">
-              Reset here
-            </a>
+            <Link
+              to="/password-reset"
+              className="text-[#00f7ff] hover:text-[#00c2d1] underline"
+            >
+              Reset it here
+            </Link>
           </p>
         </form>
       </div>

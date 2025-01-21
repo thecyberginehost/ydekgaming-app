@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
-import UnderConstructionBanner from "../components/UnderConstructionBanner";  // Import banner
+import UnderConstructionBanner from "../components/UnderConstructionBanner"; // Import banner
 
 const plans = {
-  "Free": {
+  Free: {
     name: "Free",
     monthlyPrice: 0,
     annualPrice: 0,
@@ -92,142 +92,105 @@ function Checkout() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <UnderConstructionBanner /> {/* Under Construction Banner */}
-      <div className="max-w-md w-full bg-white rounded-lg shadow p-6 space-y-6">
-        
-        {/* Back to Home Link using React Router's Link */}
-        <div className="text-center">
-          <Link to="/" className="text-blue-600 underline">Return Home</Link>
-        </div>
+    <div className="min-h-screen bg-[#0f172a] text-white">
+      {/* Under Construction Banner */}
+      <UnderConstructionBanner />
 
-        <h1 className="text-3xl font-bold mb-4 text-center">Checkout</h1>
-        
-        {/* Display Selected Plan Details */}
-        <div className="mb-4">
-          <h2 className="text-xl font-semibold text-center">
-            You selected: {selectedPlan.name} Tier
-          </h2>
-          <div className="text-center">
-            <span className="text-4xl font-extrabold">
-              {billingCycle === "monthly"
-                ? `$${selectedPlan.monthlyPrice}`
-                : `$${selectedPlan.annualPrice.toFixed(2)}`}
-            </span>
-            <span className="text-lg text-gray-600">
-              /{billingCycle === "monthly" ? "month" : "year"}
-            </span>
+      <div className="flex items-center justify-center p-8">
+        <div className="max-w-lg w-full bg-[#1e293b] rounded-lg shadow-lg p-8">
+          {/* Back to Home Link */}
+          <div className="text-center mb-6">
+            <Link to="/" className="text-[#00f7ff] underline font-medium">
+              Return to Home
+            </Link>
           </div>
-          <ul className="mt-2 list-disc list-inside text-sm text-gray-700">
-            {selectedPlan.features.map((feature, idx) => (
-              <li key={idx}>{feature}</li>
+
+          <h1 className="text-3xl font-extrabold text-center text-[#00f7ff] mb-6">
+            Checkout
+          </h1>
+
+          {/* Display Selected Plan Details */}
+          <div className="mb-6">
+            <h2 className="text-xl font-bold text-center mb-4">
+              You selected: <span className="text-[#00f7ff]">{selectedPlan.name} Tier</span>
+            </h2>
+            <div className="text-center text-2xl font-bold">
+              <span>
+                {billingCycle === "monthly"
+                  ? `$${selectedPlan.monthlyPrice}`
+                  : `$${selectedPlan.annualPrice.toFixed(2)}`}
+              </span>
+              <span className="text-lg text-gray-400">/{billingCycle === "monthly" ? "month" : "year"}</span>
+            </div>
+            <ul className="mt-4 space-y-2 text-gray-300">
+              {selectedPlan.features.map((feature, idx) => (
+                <li key={idx} className="flex items-center">
+                  <svg
+                    className="w-5 h-5 text-[#00f7ff] mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* User Information Form */}
+          <div className="space-y-4">
+            {["username", "email", "password", "confirmPassword"].map((field, idx) => (
+              <div key={idx}>
+                <label
+                  className="block text-gray-300 mb-1 capitalize"
+                  htmlFor={field}
+                >
+                  {field.replace(/([A-Z])/g, " $1")}
+                </label>
+                <input
+                  id={field}
+                  name={field}
+                  type={field.includes("password") ? "password" : "text"}
+                  value={formData[field]}
+                  onChange={handleInputChange}
+                  className="w-full p-3 bg-[#0f172a] text-gray-300 border border-[#00f7ff] rounded focus:outline-none focus:ring-2 focus:ring-[#00f7ff]"
+                  placeholder={`Enter your ${field}`}
+                />
+                {formErrors[field] && <p className="text-red-500 text-sm">{formErrors[field]}</p>}
+              </div>
             ))}
-          </ul>
-        </div>
+          </div>
 
-        {/* User Information Form */}
-        <div className="space-y-4">
-          <div>
-            <label className="block text-gray-700 mb-1" htmlFor="username">
-              Username
-            </label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              value={formData.username}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              placeholder="Choose a unique username"
-            />
-            {formErrors.username && <p className="text-red-500 text-sm">{formErrors.username}</p>}
+          {/* Payment Options */}
+          <div className="mt-8 space-y-4">
+            {["Stripe", "PayPal", "Crypto"].map((method) => (
+              <button
+                key={method}
+                onClick={() => handlePaymentSelection(method)}
+                className={`w-full py-3 font-semibold rounded-lg transition ${
+                  billingInfoValid
+                    ? `bg-${method === "Stripe" ? "[#00f7ff]" : method === "PayPal" ? "yellow-500" : "purple-600"} hover:bg-opacity-80`
+                    : "bg-gray-600 cursor-not-allowed"
+                }`}
+              >
+                {method === "Stripe" ? "💳" : method === "PayPal" ? "🅿️" : "₿"} Pay with {method}
+              </button>
+            ))}
           </div>
-          
-          <div>
-            <label className="block text-gray-700 mb-1" htmlFor="email">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              placeholder="Your email"
-            />
-            {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
-          </div>
-          
-          <div>
-            <label className="block text-gray-700 mb-1" htmlFor="password">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              placeholder="Create a strong password"
-            />
-            <p className="text-xs text-gray-600 mt-1">
-              Password must be at least 8 characters long.
+
+          {selectedPayment && (
+            <p className="text-center text-gray-400 mt-4">
+              {selectedPayment} payment integration coming soon!
             </p>
-            {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}</p>}
-          </div>
-          
-          <div>
-            <label className="block text-gray-700 mb-1" htmlFor="confirmPassword">
-              Confirm Password
-            </label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              placeholder="Re-enter your password"
-            />
-            {formErrors.confirmPassword && <p className="text-red-500 text-sm">{formErrors.confirmPassword}</p>}
-          </div>
+          )}
         </div>
-
-        {/* Payment Options */}
-        <div className="space-y-4">
-          <button
-            onClick={() => handlePaymentSelection("Stripe")}
-            className={`w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition ${
-              !billingInfoValid ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            <span className="mr-2">💳</span> Pay with Stripe
-          </button>
-          <button
-            onClick={() => handlePaymentSelection("PayPal")}
-            className={`w-full flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 rounded transition ${
-              !billingInfoValid ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            <span className="mr-2">🅿️</span> Pay with PayPal
-          </button>
-          <button
-            onClick={() => handlePaymentSelection("Crypto")}
-            className={`w-full flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded transition ${
-              !billingInfoValid ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            <span className="mr-2">₿</span> Pay with Crypto
-          </button>
-        </div>
-
-        {selectedPayment && (
-          <p className="mt-6 text-sm text-center text-gray-500">
-            {selectedPayment} payment integration coming soon!
-          </p>
-        )}
       </div>
     </div>
   );

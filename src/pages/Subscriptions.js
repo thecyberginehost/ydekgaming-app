@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UnderConstructionBanner from "../components/UnderConstructionBanner";  // Import the banner
+import UnderConstructionBanner from "../components/UnderConstructionBanner"; // Import the banner
 
 function Subscriptions() {
   const [billingCycle, setBillingCycle] = useState("monthly");
@@ -46,32 +46,34 @@ function Subscriptions() {
 
   return (
     <>
-      {/* Under Construction Banner */}
+      {/* Subtle Under Construction Banner */}
       <UnderConstructionBanner />
 
-      <div className="min-h-screen bg-gray-100 p-6">
+      <div className="min-h-screen bg-[#0f172a] p-6">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold mb-6 text-center">Subscriptions</h1>
+          <h1 className="text-4xl font-extrabold mb-6 text-center text-[#00f7ff] tracking-wider">
+            Choose Your Subscription
+          </h1>
 
           {/* Billing Cycle Toggle */}
           <div className="flex justify-center mb-8">
             <button
               onClick={() => setBillingCycle("monthly")}
-              className={`px-4 py-2 rounded-l ${
+              className={`px-6 py-2 rounded-l-lg font-semibold ${
                 billingCycle === "monthly"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
+                  ? "bg-[#00f7ff] text-black shadow-lg"
+                  : "bg-[#1e293b] text-gray-300 hover:bg-[#2e3a4b]"
+              } transition`}
             >
               Monthly
             </button>
             <button
               onClick={() => setBillingCycle("annual")}
-              className={`px-4 py-2 rounded-r ${
+              className={`px-6 py-2 rounded-r-lg font-semibold ${
                 billingCycle === "annual"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
+                  ? "bg-[#00f7ff] text-black shadow-lg"
+                  : "bg-[#1e293b] text-gray-300 hover:bg-[#2e3a4b]"
+              } transition`}
             >
               Annually (20% off)
             </button>
@@ -82,26 +84,33 @@ function Subscriptions() {
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className="bg-white rounded-lg shadow p-6 flex flex-col"
+                className="bg-[#1e293b] rounded-lg shadow-xl p-6 flex flex-col hover:scale-105 transition-transform"
               >
-                <h2 className="text-2xl font-bold mb-4 text-center">{plan.name}</h2>
+                <h2 className="text-2xl font-bold mb-4 text-center text-[#00f7ff] tracking-wide">
+                  {plan.name}
+                </h2>
                 <div className="text-center mb-6">
                   {billingCycle === "monthly" ? (
-                    <span className="text-4xl font-extrabold">${plan.monthlyPrice}</span>
+                    <span className="text-5xl font-extrabold text-white">
+                      ${plan.monthlyPrice}
+                    </span>
                   ) : (
-                    <span className="text-4xl font-extrabold">
+                    <span className="text-5xl font-extrabold text-white">
                       ${plan.annualPrice.toFixed(2)}
                     </span>
                   )}
-                  <span className="text-lg text-gray-600">
+                  <span className="text-lg text-gray-400">
                     /{billingCycle === "monthly" ? "month" : "year"}
                   </span>
                 </div>
-                <ul className="mb-6 space-y-2 flex-1">
+                <ul className="mb-6 space-y-4 flex-1">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center">
+                    <li
+                      key={idx}
+                      className="flex items-center text-gray-300 font-medium"
+                    >
                       <svg
-                        className="w-5 h-5 text-green-500 mr-2 flex-shrink-0"
+                        className="w-5 h-5 text-[#00f7ff] mr-2 flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -123,10 +132,12 @@ function Subscriptions() {
                       window.location.href = "/signup";
                     } else {
                       // Pass selected plan as a query parameter to Checkout page
-                      window.location.href = `/checkout?plan=${encodeURIComponent(plan.name)}`;
+                      window.location.href = `/checkout?plan=${encodeURIComponent(
+                        plan.name
+                      )}`;
                     }
                   }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition"
+                  className="bg-[#00f7ff] hover:bg-[#0056ff] text-black font-semibold py-3 rounded-lg transition"
                 >
                   {plan.name === "Free" ? "Get Started" : "Upgrade to " + plan.name}
                 </button>

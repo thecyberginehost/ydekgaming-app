@@ -5,6 +5,7 @@ import { Auth } from "aws-amplify";
 
 // Components
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"; // Import Footer component
 
 // Pages
 import Home from "./pages/Home";
@@ -13,6 +14,8 @@ import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import CreatePost from "./pages/CreatePost"; // Import CreatePost page
+import CreateTournament from "./pages/CreateTournament"; // Import CreateTournament page
 import Settings from "./pages/Settings";
 import Subscriptions from "./pages/Subscriptions";
 import Tournaments from "./pages/Tournaments";
@@ -50,44 +53,65 @@ function PrivateRoute({ children }) {
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/password-reset" element={<PasswordReset />} />
-        <Route path="/subscriptions" element={<Subscriptions />} />
-        <Route path="/tournaments" element={<Tournaments />} />
-        <Route path="/guilds" element={<Guilds />} />
-        <Route path="/checkout" element={<Checkout />} />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/password-reset" element={<PasswordReset />} />
+            <Route path="/subscriptions" element={<Subscriptions />} />
+            <Route path="/tournaments" element={<Tournaments />} />
+            <Route path="/guilds" element={<Guilds />} />
+            <Route path="/checkout" element={<Checkout />} />
 
-        {/* Private Routes */}
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <PrivateRoute>
-              <Settings />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+            {/* Private Routes */}
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <Settings />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/create-post"
+              element={
+                <PrivateRoute>
+                  <CreatePost />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/create-tournament"
+              element={
+                <PrivateRoute>
+                  <CreateTournament />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

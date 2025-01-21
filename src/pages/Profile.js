@@ -111,7 +111,6 @@ function Profile() {
           <p className="text-gray-200 mt-2">Gamer | Networker | Competitor</p>
         </div>
 
-<<<<<<< HEAD
         {/* Profile Content */}
         <div className="p-6 space-y-6">
           {/* About Me Section */}
@@ -154,24 +153,8 @@ function Profile() {
                 </button>
               </>
             )}
-=======
-        {/* Display user info */}
-        <p className="text-gray-700 mb-4">Username: {user.username}</p>
-
-        {/* Display user's current pic */}
-        {profilePic ? (
-          <img
-            src={profilePic}
-            alt="Profile"
-            className="w-32 h-32 object-cover rounded-full mb-4"
-          />
-        ) : (
-          <div className="w-32 h-32 bg-gray-300 rounded-full mb-4 flex items-center justify-center">
-            <span className="text-gray-500">No Picture</span>
->>>>>>> e8ae778d50dc367b3393fe422136dcab070cf228
           </div>
 
-<<<<<<< HEAD
           {/* Upload Section */}
           <div>
             <h2 className="text-2xl font-bold mb-2">Profile Picture</h2>
@@ -185,65 +168,10 @@ function Profile() {
                 disabled={uploading}
               />
             </label>
-            {uploading && <p className="text-sm text-gray-400 mt-1">Uploading...</p>}
+            {uploading && (
+              <p className="text-sm text-gray-400 mt-1">Uploading...</p>
+            )}
           </div>
-=======
-        {/* Upload new profile pic */}
-        <label className="block mb-2">
-          <span className="text-gray-700">Upload a new picture:</span>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="mt-1 block"
-            disabled={uploading}
-          />
-        </label>
-        {uploading && <p className="text-sm">Uploading...</p>}
-
-        <hr className="my-4" />
-
-        {/* About Me Section */}
-        <div>
-          <h2 className="text-xl font-bold mb-2">About Me</h2>
-          {editingAboutMe ? (
-            <>
-              <textarea
-                className="w-full p-2 border rounded mb-2"
-                rows="4"
-                value={aboutMe}
-                onChange={(e) => setAboutMe(e.target.value)}
-                placeholder="Write something about yourself..."
-              />
-              <div className="flex space-x-2">
-                <button
-                  onClick={handleSaveAboutMe}
-                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={() => setEditingAboutMe(false)}
-                  className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500"
-                >
-                  Cancel
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="text-gray-700 mb-2">
-                {aboutMe || "No About Me information yet."}
-              </p>
-              <button
-                onClick={() => setEditingAboutMe(true)}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
-              >
-                Edit About Me
-              </button>
-            </>
-          )}
->>>>>>> e8ae778d50dc367b3393fe422136dcab070cf228
         </div>
 
         {statusMessage && (
